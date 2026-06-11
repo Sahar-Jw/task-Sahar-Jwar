@@ -11,7 +11,7 @@ This project is a multi-page front-end showcasing featured projects and interact
   - Theme toggle supported via `assets/js/theme-toggle.js`.
 
 - **Blog (Blog.html)**
-  - Pulls and displays tech blog posts using the **NewsAPI** (handled in `assets/js/blog.js`).
+  - Pulls and displays tech blog posts using the **gnewsApi** (handled in `assets/js/blog.js`).
   - Includes pagination and description expand/collapse.
   - Blog imagery uses a default fallback image (`assets/imgs/blog.png`) when an article has no thumbnail.
 
@@ -44,7 +44,7 @@ This project is a multi-page front-end showcasing featured projects and interact
 - `assets/js/`
   - `ProjectData.js` (featured projects dataset)
   - `seeMoreDetails.js` (shared expand/collapse logic)
-  - `blog.js` (NewsAPI fetching + blog UI + pagination)
+  - `blog.js` (gnewsAPI fetching + blog UI + pagination)
   - `products.js` (Fake Store API + favorites modal)
   - `calculater.js` (calculator logic)
   - `validation.js` (form validation)
