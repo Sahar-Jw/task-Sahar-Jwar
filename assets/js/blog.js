@@ -1,14 +1,14 @@
-const API_URL ="https://gnews.io/api/v4/top-headlines?category=general&apikey=648fbfb8e7044a906e318a247dd076be";
+const API_URL = "assets/data/blog_data.json"; 
 const DEFAULT_IMAGE = "assets/imgs/blog.png";
-const MAX_CARDS = 38; // max articles fetched (per NewsAPI)
-const ITEMS_PER_PAGE = 9; // pagination size (Bootstrap pages)
+const MAX_CARDS = 38; 
+const ITEMS_PER_PAGE = 9; 
 
 function escapeHtml(str) {
   return (str ?? '').toString()
     .replaceAll('&', '&amp;')
-    .replaceAll('<', '<')
-    .replaceAll('>', '>')
-    .replaceAll('"', '"')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
     .replaceAll("'", '&#39;');
 }
 
@@ -48,9 +48,9 @@ function createBlogCard(article) {
   const title = article?.title || "Untitled";
   const url = article?.url || "#";
   const description = article?.description || "";
-  const sourceName = article?.source?.name || "Unknown source";
-  const publishedAt = formatDate(article?.publishedAt);
-  const imageUrl = article?.image || DEFAULT_IMAGE;
+  const sourceName = article?.source?.name || "TechCrunch";
+  const publishedAt = formatDate(article?.publishedAt || article?.published_at);
+  const imageUrl = article?.image || article?.urlToImage || DEFAULT_IMAGE;
 
   const cleanDesc = String(description ?? '').trim();
   const PREVIEW = 140;
@@ -66,32 +66,28 @@ function createBlogCard(article) {
           alt="${escapeHtml(title)}"
           loading="lazy"
           onerror="this.onerror=null;this.src='${escapeHtml(DEFAULT_IMAGE)}';"
+          style="height: 200px; object-fit: cover;"
         />
 
         <div class="card-body d-flex flex-column">
           <div class="d-flex justify-content-between align-items-start gap-3">
-            <span class="badge text-bg-primary text-black">${escapeHtml(sourceName)}</span>
+            <span class="badge text-bg-primary text-white p-2">${escapeHtml(sourceName)}</span>
             <div class="d-flex flex-column align-items-end">
-            <small class="text-secondary">${escapeHtml(publishedAt)}</small>
+              <small class="text-secondary">${escapeHtml(publishedAt)}</small>
             </div>
           </div>
 
           <h5 class="card-title mt-3">${escapeHtml(title)}</h5>
 
           <div class="blog-desc-area mt-2">
-            <p class="card-text text-secondary mb-2 blog-preview">${escapeHtml(
-              preview
-            )}</p>
-
-            <div class="blog-desc-full" aria-hidden="true">
-              <p class="card-text text-secondary mb-0">${escapeHtml(
-                cleanDesc
-              )}</p>
+            <p class="card-text text-secondary mb-2 blog-preview">${escapeHtml(preview)}</p>
+            <div class="blog-desc-full d-none" aria-hidden="true">
+              <p class="card-text text-secondary mb-0">${escapeHtml(cleanDesc)}</p>
             </div>
           </div>
 
           <button
-            class="btn btn-link p-0 mt-auto blog-desc-toggle"
+            class="btn btn-link p-0 mt-auto text-start blog-desc-toggle"
             type="button"
             aria-expanded="false"
             ${hasOverflow ? '' : 'style="display:none"'}
@@ -102,7 +98,7 @@ function createBlogCard(article) {
           <div class="mt-2 d-flex gap-2">
             <a
               href="${escapeHtml(url)}"
-              class="btn btn-sm btn-outline-primary "
+              class="btn btn-sm btn-outline-primary"
               target="_blank"
               rel="noopener noreferrer"
             >Read more</a>
@@ -163,7 +159,6 @@ function renderPagination() {
     })
   );
 
-  // Page number window around current page
   const windowSize = 5;
   const half = Math.floor(windowSize / 2);
   let start = Math.max(1, currentPage - half);
@@ -198,22 +193,6 @@ function renderBlogsPage(page) {
   const pageItems = articles.slice(startIdx, endIdx);
 
   container.innerHTML = pageItems.map(createBlogCard).join("");
-
-  // Re-init expand/collapse after re-rendering cards.
-  // initSeeMoreDetails is idempotent on pages where cards are replaced.
-  if (window.initSeeMoreDetails) {
-    const cardsContainer = document.getElementById('blog');
-    window.initSeeMoreDetails({
-      cardsContainer,
-      cardSelector: '.blog-card',
-      fullWrapSelector: '.blog-desc-full',
-      toggleBtnSelector: '.blog-desc-toggle',
-      expandedClassName: 'is-expanded',
-      moreText: 'see more details',
-      lessText: 'see less details',
-    });
-  }
-
   renderPagination();
 }
 
@@ -238,7 +217,7 @@ async function fetchBlogs() {
       container.innerHTML = `
         <div class="col-12">
           <div class="alert alert-warning mb-0" role="status">
-            No blogs found for the selected sources.
+            No integrity data blogs found.
           </div>
         </div>
       `;
@@ -260,11 +239,30 @@ async function fetchBlogs() {
   } catch (err) {
     renderError(
       container,
-      err?.message ||
-        "Could not load blogs. If you're running locally, your browser may block the request (CORS)."
+      "Could not load blog data. Please make sure the JSON file exists in the correct assets directory path."
     );
   }
 }
+
+// معالجة ضغط زر See more details ديناميكياً لتوفير مساحة الكود
+document.addEventListener('click', function(e) {
+  const toggleBtn = e.target.closest('.blog-desc-toggle');
+  if (toggleBtn) {
+    const cardBody = toggleBtn.closest('.card-body');
+    const previewEl = cardBody.querySelector('.blog-preview');
+    const fullEl = cardBody.querySelector('.blog-desc-full');
+    
+    if (fullEl.classList.contains('d-none')) {
+      fullEl.classList.remove('d-none');
+      previewEl.classList.add('d-none');
+      toggleBtn.innerText = 'see less details';
+    } else {
+      fullEl.classList.add('d-none');
+      previewEl.classList.remove('d-none');
+      toggleBtn.innerText = 'see more details';
+    }
+  }
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   const paginationEl = getPaginationEl();
@@ -280,7 +278,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fetchBlogs();
 });
-
-
-
-

@@ -492,7 +492,7 @@ input[type = text],input[type = email],textarea{
 }
 @media screen and (max-width : 576px) {
     .tabs-text{
-    font-size: 11px;
+    font-size: 11px !important;
     }
 }
 /* MEDIA QUERY END */
