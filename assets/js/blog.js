@@ -1,4 +1,4 @@
-const API_URL ="https://newsapi.org/v2/everything?domains=techcrunch.com,thenextweb.com&apiKey=e5d9da69bb00456c8a6918198342d9ee";
+const API_URL ="https://gnews.io/api/v4/top-headlines?category=general&apikey=648fbfb8e7044a906e318a247dd076be";
 const DEFAULT_IMAGE = "assets/imgs/blog.png";
 const MAX_CARDS = 38; // max articles fetched (per NewsAPI)
 const ITEMS_PER_PAGE = 9; // pagination size (Bootstrap pages)
@@ -46,12 +46,11 @@ function renderError(container, message) {
 
 function createBlogCard(article) {
   const title = article?.title || "Untitled";
-  const author = article?.author || "Unknown author";
   const url = article?.url || "#";
   const description = article?.description || "";
   const sourceName = article?.source?.name || "Unknown source";
   const publishedAt = formatDate(article?.publishedAt);
-  const imageUrl = article?.urlToImage || DEFAULT_IMAGE;
+  const imageUrl = article?.image || DEFAULT_IMAGE;
 
   const cleanDesc = String(description ?? '').trim();
   const PREVIEW = 140;
@@ -74,7 +73,6 @@ function createBlogCard(article) {
             <span class="badge text-bg-primary text-black">${escapeHtml(sourceName)}</span>
             <div class="d-flex flex-column align-items-end">
             <small class="text-secondary">${escapeHtml(publishedAt)}</small>
-            <small class="text-secondary">${escapeHtml(author)}</small>
             </div>
           </div>
 
@@ -226,11 +224,7 @@ async function fetchBlogs() {
   renderLoading(container);
 
   try {
-    const res = await fetch(API_URL, {
-      headers: {
-        "X-Api-Key": "e5d9da69bb00456c8a6918198342d9ee",
-      },
-    });
+    const res = await fetch(API_URL);
 
     if (!res.ok) {
       throw new Error(`Request failed: ${res.status} ${res.statusText}`);
