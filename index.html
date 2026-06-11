@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css" integrity="sha512-t7Few9xlddEmgd3oKZQahkNI4dS6l80+eGEzFQiqtyVYdvcSG2D3Iub77R20BdotfRPA9caaRkg1tyaJiPmO0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" integrity="sha512-2bBQCjcnw658Lho4nlXJcc6WkV/UxpE/sAokbXPxQNGqmNdQrWqtw26Ns9kFF/yG792pKR1Sx8/Y1Lf1XN4GKA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+  <!-- HEADER START -->
+   <header>
+    <!-- NAV START -->
+    <nav class="navbar navbar-expand-lg shadow px-5 position-fixed top-0 start-0 end-0 z-10">
+        <div class="container-fluid ">
+            <a class="navbar-brand fs-4 fw-semibold " href="#">Sahar Jwar</a>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse center " id="navbarNav">
+            <ul class="navbar-nav gap-3 align-items-center">
+                <li class="nav-item">
+                <a class="nav-link active fs-6" aria-current="index" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link fs-6" href="Blog.html">Blog</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link fs-6" href="ProductGallery.html">Product Gallery</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link fs-6" href="Calculator.html" >Calculator</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link fs-6" href="Consultation.html" >Consultation</a>
+                </li>
+                <li>
+
+                <i class="bi bi-brightness-high" data-theme-toggle-icon></i>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- NAV END -->
+
+    <!-- HERO START -->
+    <div class="hero d-flex align-items-end justify-content-around gap-5 px-3 mt-5  ">
+        <div class="profile-container">
+            <div class="hexagon-bg "></div>
+            <img src="/assets/imgs/my-img-removebg-preview-cut.png" alt="Profile Image" class="profile-img object-fit-contain">
+        </div>
+        <div class="text w-50 d-flex flex-column">
+            <span class="fs-6 text-uppercase text-secondary">
+                hello, it's me 
+            </span>
+            <h1>
+                sahar jwar
+            </h1>
+            <h2>
+                and i'm a <span data-typewriter></span>
+            </h2>
+            <p>
+                specialized in Next.js, React, and TypeScript to build scalable, high-performance web applications. Expert at converting complex Figma designs into pixel-perfect, responsive user interfaces using Tailwind CSS and Shadcn/ui. Possesses full-stack capability (PostgreSQL/Drizzle ORM) for seamless API integration, backed by a strong competitive programming background focused on writing clean, optimized frontend logic.
+            </p>
+            <div class="icons d-flex gap-3 fs-4 mb-3 ">
+                <a href="https://github.com/Sahar-Jw" target="_blank" rel="noopener noreferrer" aria-label="My GitHub">
+                    <i class="bi bi-github "></i>
+                </a>
+                <a href="https://www.linkedin.com/in/sahar-jwar-8000a52a2/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BN5Db%2BqIlRdCk7vwevllRZg%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="My LinkedIn">
+                    <i class="bi bi-linkedin fs-4"></i>
+                </a>
+                <a href="https://personal-portfolio.sandysmith4490.workers.dev/" target="_blank" rel="noopener noreferrer" aria-label="My Portfolio">
+                    <i class="bi bi-code-slash"></i>
+                </a>
+            </div>
+
+            <a href="assets/Sahar-Jwar.pdf" download="Sahar-Jwar_CV.pdf" class="p-3 cv   ">Download my CV</a>
+
+        </div>
+    </div>
+    <!-- HERO END -->
+
+   </header>
+   <!-- HEADER END -->
+
+   <!-- MAIN START -->
+   <main class="container-fluid px-5 " >
+    <section class="row g-3 justify-content-between" id="cards-container"></section>
+   </main>
+   <!-- MAIN END -->
+
+   <!-- FOOTER START -->
+   <footer class="mt-5 border-top">
+       <div class="container py-4">
+           <div class="row g-3 align-items-center">
+               <div class="col-12 col-md-6 text-center text-md-start">
+                   <span class="fw-semibold">Sahar Jwar</span>
+                   <span class="text-secondary">&nbsp;© <span id="footerYear"></span> All rights reserved.</span>
+                </div>
+                <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end gap-3">
+                    <a class="text-decoration-none" href="index.html">Home</a>
+                    <a class="text-decoration-none" href="Blog.html">Blog</a>
+                    <a class="text-decoration-none" href="ProductGallery.html">Product Gallery</a>
+                    <a class="text-decoration-none" href="Consultation.html">Consultation</a>
+                </div>
+            </div>
+        </div>
+   </footer>
+   <!-- FOOTER END -->
+    
+    <script>document.getElementById('footerYear').textContent = new Date().getFullYear();</script>
+    <script type="module" src="assets/js/ProjectData.js"></script>
+    <script src="assets/js/seeMoreDetails.js"></script>
+    <script src="assets/js/typewriter-frontend.js"></script>
+    <script src="assets/js/theme-toggle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.min.js" integrity="sha512-nKXmKvJyiGQy343jatQlzDprflyB5c+tKCzGP3Uq67v+lmzfnZUi/ZT+fc6ITZfSC5HhaBKUIvr/nTLCV+7F+Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>

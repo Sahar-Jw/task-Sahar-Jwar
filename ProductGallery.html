@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" integrity="sha512-2bBQCjcnw658Lho4nlXJcc6WkV/UxpE/sAokbXPxQNGqmNdQrWqtw26Ns9kFF/yG792pKR1Sx8/Y1Lf1XN4GKA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css" integrity="sha512-t7Few9xlddEmgd3oKZQahkNI4dS6l80+eGEzFQiqtyVYdvcSG2D3Iub77R20BdotfRPA9caaRkg1tyaJiPmO0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+  <!-- HEADER START -->
+    <header>
+      <!-- NAV START -->
+      <nav class="navbar navbar-expand-lg shadow px-5 position-fixed top-0 start-0 end-0 bg-white" style="z-index: 1050;">
+        <div class="container-fluid">
+          <a class="navbar-brand fs-4 fw-semibold" href="#">Sahar Jwar</a>
+          <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse center" id="navbarNav">
+            <ul class="navbar-nav gap-3">
+              <li class="nav-item"><a class="nav-link fs-6" href="index.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link fs-6" href="Blog.html">Blog</a></li>
+              <li class="nav-item"><a class="nav-link active fs-6" aria-current="ProductGallery" href="ProductGallery.html">Product Gallery</a></li>
+              <li class="nav-item"><a class="nav-link fs-6" href="Calculator.html">Calculator</a></li>
+              <li class="nav-item"><a class="nav-link fs-6" href="Consultation.html">Consultation</a></li>
+              <li>
+                <button type="button" class="btn btn-primary position-relative" data-bs-toggle="modal" data-bs-target="#cartModal" id="cartNavBtn">
+                  <i class="bi bi-cart2"></i>
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-span">0</span>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- NAV END -->
+    </header>
+  <!-- HEADER END -->
+  
+  <!-- MAIN START -->
+   <main class="container mt-5 pt-5">
+    <!--FILTER TABS START -->
+      <ul class="nav nav-tabs mt-4" id="categoryTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active tabs-text" data-category="all" type="button" role="tab">All Products</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link tabs-text" data-category="men's clothing" type="button" role="tab">Men</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link tabs-text" data-category="women's clothing" type="button" role="tab">Women</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link tabs-text" data-category="jewelery" type="button" role="tab">Jewelry</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link tabs-text" data-category="electronics" type="button" role="tab">Electronics</button>
+        </li>
+      </ul>
+    <!--FILTER TABS END -->
+
+    <!-- TABS CONTAINER START -->
+      <div class="p-3 border border-top-0 bg-white rounded-bottom">
+        <div class="row g-4" id="productCard">
+        </div>
+      </div>
+    <!-- TABS CONTAINER END -->
+
+      <!--MODEL POPUP START -->
+      <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="cartModalLabel">Your Favorites & Cart</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div id="cartModalList" class="d-flex flex-column gap-3">
+                <p class="text-muted text-center my-4">Your cart is empty.</p>
+              </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-between align-items-center bg-light">
+              <div>
+                <span class="fw-semibold fs-5">Total Price:</span>
+                <span class="text-secondary fw-bold fs-5 ms-2" id="cartTotalValue">$0.00</span>
+              </div>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--MODEL POPUP END -->
+
+   </main>
+  <!-- MAIN END -->
+
+  <!-- FOOTER START -->
+    <footer class="mt-5 border-top">
+        <div class="container py-4">
+            <div class="row g-3 align-items-center">
+                <div class="col-12 col-md-6 text-center text-md-start">
+                    <span class="fw-semibold">Sahar Jwar</span>
+                    <span class="text-secondary">&nbsp;© <span id="footerYear"></span> All rights reserved.</span>
+                </div>
+                <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end gap-3">
+                    <a class="text-decoration-none" href="index.html">Home</a>
+                    <a class="text-decoration-none" href="Blog.html">Blog</a>
+                    <a class="text-decoration-none" href="ProductGallery.html">Product Gallery</a>
+                    <a class="text-decoration-none" href="Consultation.html">Consultation</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+  <!-- FOOTER END -->
+
+    <script>document.getElementById('footerYear').textContent = new Date().getFullYear();</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.min.js" integrity="sha512-nKXmKvJyiGQy343jatQlzDprflyB5c+tKCzGP3Uq67v+lmzfnZUi/ZT+fc6ITZfSC5HhaBKUIvr/nTLCV+7F+Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="assets/js/products.js"></script>
+</body>
+</html>

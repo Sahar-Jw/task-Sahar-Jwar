@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" integrity="sha512-2bBQCjcnw658Lho4nlXJcc6WkV/UxpE/sAokbXPxQNGqmNdQrWqtw26Ns9kFF/yG792pKR1Sx8/Y1Lf1XN4GKA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <!-- HEADER START -->
+    <header>
+        <!-- NAV START -->
+        <nav class="navbar navbar-expand-lg shadow px-5 position-fixed top-0 start-0 end-0 z-10">
+            <div class="container-fluid">
+                <a class="navbar-brand fs-4 fw-semibold" href="#">Sahar Jwar</a>
+                <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse center" id="navbarNav">
+                    <ul class="navbar-nav gap-3">
+                        <li class="nav-item"><a class="nav-link fs-6" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link fs-6" href="Blog.html">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link fs-6" href="ProductGallery.html">Product Gallery</a></li>
+                        <li class="nav-item"><a class="nav-link fs-6" href="Calculator.html">Calculator</a></li>
+                        <li class="nav-item"><a class="nav-link fs-6 active" aria-current="Consultation" href="Consultation.html">Consultation</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- NAV END -->
+    </header>
+    <!-- HEADR END -->
+
+    <!-- MAIN START -->
+    <main class="container-fluid d-flex justify-content-center align-items-center mt-5 pt-5">
+        <!-- FORM START -->
+        <form class="p-5 rounded shadow" novalidate>
+            <h1 class="fs-4 mb-4 text-center fw-normal">Consultation Form</h1>
+            
+            <!-- NAME INPUT START-->
+            <div class="row mb-3">
+                <label for="inputName3" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputName3" required placeholder="Enter your name">
+                    <div class="invalid-feedback" data-error-for="name" style="display:none"></div>
+                </div>
+            </div>
+            <!-- NAME INPUT START-->
+
+
+            <!-- EMAIL INPUT START-->
+            <div class="row mb-3">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="inputEmail3" required placeholder="Enter your email">
+                    <div class="invalid-feedback" data-error-for="email" style="display:none"></div>
+                </div>
+            </div>
+            <!-- EMAIL INPUT START-->
+
+            <!-- MESSAGE TEXTAREA START-->
+            <div class="mb-3">
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required placeholder="Write your message here..."></textarea>
+                <div class="invalid-feedback" data-error-for="message" style="display:none"></div>
+            </div>
+            <!-- MESSAGE TEXTAREA START-->
+
+            <!-- SUBMIT BTN -->
+            <button type="submit" class="btn btn-primary w-25 h-auto m-0 py-2">Send</button>
+            <!-- ERROR CONTAINER -->
+            <div class="alert alert-danger mt-3" data-error-summary style="display:none" role="alert"></div>
+        </form>
+        <!-- FORM END -->
+    </main>
+    <!-- MAIN END -->
+
+    <!-- FOOTER START -->
+    <footer class="mt-5 border-top">
+        <div class="container py-4">
+            <div class="row g-3 align-items-center">
+                <div class="col-12 col-md-6 text-center text-md-start">
+                    <span class="fw-semibold">Sahar Jwar</span>
+                    <span class="text-secondary">&nbsp;© <span id="footerYear"></span> All rights reserved.</span>
+                </div>
+                <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end gap-3">
+                    <a class="text-decoration-none" href="index.html">Home</a>
+                    <a class="text-decoration-none" href="Blog.html">Blog</a>
+                    <a class="text-decoration-none" href="ProductGallery.html">Product Gallery</a>
+                    <a class="text-decoration-none" href="Consultation.html">Consultation</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER END -->
+
+    <script>document.getElementById('footerYear').textContent = new Date().getFullYear();</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.min.js" integrity="sha512-nKXmKvJyiGQy343jatQlzDprflyB5c+tKCzGP3Uq67v+lmzfnZUi/ZT+fc6ITZfSC5HhaBKUIvr/nTLCV+7F+Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/assets/js/validation.js"></script>
+</body>
+</html>
