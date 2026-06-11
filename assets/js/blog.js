@@ -53,9 +53,9 @@ function createBlogCard(article) {
   const imageUrl = article?.image || article?.urlToImage || DEFAULT_IMAGE;
 
   const cleanDesc = String(description ?? '').trim();
-  const PREVIEW = 140;
-  const hasOverflow = cleanDesc.length > PREVIEW;
-  const preview = hasOverflow ? cleanDesc.slice(0, PREVIEW).trimEnd() + '…' : cleanDesc;
+  const PREVIEW_LIMIT = 140;
+  const hasOverflow = cleanDesc.length > PREVIEW_LIMIT;
+  const previewText = hasOverflow ? cleanDesc.slice(0, PREVIEW_LIMIT).trimEnd() + '…' : cleanDesc;
 
   return `
     <div class="col-12 col-md-6 col-lg-4">
@@ -80,14 +80,16 @@ function createBlogCard(article) {
           <h5 class="card-title mt-3">${escapeHtml(title)}</h5>
 
           <div class="blog-desc-area mt-2">
-            <p class="card-text text-secondary mb-2 blog-preview">${escapeHtml(preview)}</p>
-            <div class="blog-desc-full d-none" aria-hidden="true">
-              <p class="card-text text-secondary mb-0">${escapeHtml(cleanDesc)}</p>
-            </div>
+            <!-- نستخدم وسم واحد فقط ونخزن النص الكامل داخل سمة مخصصة data-full-text لمنع الاختفاء والتعارض -->
+            <p class="card-text text-secondary mb-2 blog-description-text" 
+               data-full-text="${escapeHtml(cleanDesc)}" 
+               data-preview-text="${escapeHtml(previewText)}">
+              ${escapeHtml(previewText)}
+            </p>
           </div>
 
           <button
-            class="btn btn-link p-0 mt-auto text-start blog-desc-toggle"
+            class="btn btn-link p-0 mt-auto text-start blog-desc-toggle shadow-none text-decoration-none"
             type="button"
             aria-expanded="false"
             ${hasOverflow ? '' : 'style="display:none"'}
@@ -210,7 +212,6 @@ async function fetchBlogs() {
     }
 
     const data = await res.json();
-    console.log("Fetched blogs data:", data);
     const articles = Array.isArray(data?.articles) ? data.articles : [];
 
     if (articles.length === 0) {
@@ -244,22 +245,25 @@ async function fetchBlogs() {
   }
 }
 
-// معالجة ضغط زر See more details ديناميكياً لتوفير مساحة الكود
+// 🛠️ الحل البرمجي الجذري والآمن 100%: التبديل النصي المباشر بدون إخفاء عناصر
 document.addEventListener('click', function(e) {
   const toggleBtn = e.target.closest('.blog-desc-toggle');
   if (toggleBtn) {
     const cardBody = toggleBtn.closest('.card-body');
-    const previewEl = cardBody.querySelector('.blog-preview');
-    const fullEl = cardBody.querySelector('.blog-desc-full');
+    const textEl = cardBody.querySelector('.blog-description-text');
     
-    if (fullEl.classList.contains('d-none')) {
-      fullEl.classList.remove('d-none');
-      previewEl.classList.add('d-none');
+    const fullText = textEl.getAttribute('data-full-text');
+    const previewText = textEl.getAttribute('data-preview-text');
+
+    // التبديل بين النصين المخزنين في الـ HTML مباشرة لمنع الاختفاء الصادم
+    if (toggleBtn.getAttribute('aria-expanded') === 'false') {
+      textEl.textContent = fullText;
       toggleBtn.innerText = 'see less details';
+      toggleBtn.setAttribute('aria-expanded', 'true');
     } else {
-      fullEl.classList.add('d-none');
-      previewEl.classList.remove('d-none');
+      textEl.textContent = previewText;
       toggleBtn.innerText = 'see more details';
+      toggleBtn.setAttribute('aria-expanded', 'false');
     }
   }
 });
