@@ -499,12 +499,18 @@ input[type = text],input[type = email],textarea{
     .tabs-text{
     font-size: 13px;
     }
-    #modal-item-1{
+    #modal-item-1,#modal-item-2,#modal-item-3,
+    #modal-item-4,#modal-item-5,#modal-item-6,
+    #modal-item-7,#modal-item-8,#modal-item-9,
+    #modal-item-10,#modal-item-11,#modal-item-12,
+    #modal-item-13,#modal-item-14,#modal-item-15,
+    #modal-item-16,#modal-item-17,#modal-item-18 {
         flex-direction: column;
         align-items: flex-start !important;
         div{
         flex-direction: column !important;
         width: 100% !important;
+        align-items: flex-start !important;
         }
     }
 }
