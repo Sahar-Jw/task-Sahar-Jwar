@@ -28,6 +28,7 @@ body{
     color: var(--text-color);
 }
 nav{
+    padding: 4px 20px !important;
     background-color: var(--bg-pri);
     z-index: 10;
 }
@@ -508,7 +509,10 @@ input[type = text],input[type = email],textarea{
     font-size: 11px !important;
     }
     nav{
-        padding: 16px 12px !important;
+        .px-5 {
+            padding-right: 0rem !important; 
+            padding-left: 0rem !important;
+        }
     }
     .calculator-card {
         width: 100%;
