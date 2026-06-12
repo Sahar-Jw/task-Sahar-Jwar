@@ -57,6 +57,10 @@ footer{
 footer a {
     color: var(--text-color);
 }
+main{
+    padding-left: 28px !important;
+    padding-right: 28px !important;
+}
 /* GLOPALE STYLE END */
 
 /* INDEX PAGE START */
@@ -523,5 +527,9 @@ input[type = text],input[type = email],textarea{
     form button[type=submit]{
         width: 100% !important;
     }
+    main{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
 }
 /* MEDIA QUERY END */
