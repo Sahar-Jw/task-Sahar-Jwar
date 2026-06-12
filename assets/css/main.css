@@ -458,6 +458,9 @@ input[type = text],input[type = email],textarea{
 
 /* MEDIA QUERY START */
 @media screen and (max-width:992px) {
+    nav{
+        padding: 16px 12px !important;
+    }
     .hero{
         height: auto;
         margin-bottom: 100px;
@@ -491,10 +494,30 @@ input[type = text],input[type = email],textarea{
     .tabs-text{
     font-size: 13px;
     }
+    #modal-item-1{
+        flex-direction: column;
+        align-items: flex-start !important;
+        div{
+        flex-direction: column !important;
+        width: 100% !important;
+        }
+    }
 }
 @media screen and (max-width : 576px) {
     .tabs-text{
     font-size: 11px !important;
+    }
+    nav{
+        padding: 16px 12px !important;
+    }
+    .calculator-card {
+        width: 100%;
+    }
+        form {
+        width: 100%;
+    }
+    form button[type=submit]{
+        width: 100% !important;
     }
 }
 /* MEDIA QUERY END */

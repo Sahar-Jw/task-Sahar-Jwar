@@ -196,7 +196,7 @@ document.addEventListener('click', function (event) {
       } else {
         icon.className = "bi bi-heart-fill";
         button.className = "btn btn-danger toastBtn align-self-start";
-        toastBody.textContent = ` "${productName}" added to favorites!`;
+        toastBody.textContent = ` "${productName}" added to Cart!`;
         
         if (!favorites.includes(productId)) {
           favorites.push(productId);
